@@ -1,0 +1,12 @@
+.MyMatTable {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.mat-column-id {
+  padding-left: 16px;
+  font-size: 20px;
+  color: red;
+}
