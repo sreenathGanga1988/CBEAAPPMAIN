@@ -5,5 +5,6 @@ export interface Category extends AuditEntity {
     id: number;
     name: string;
     abbreviation: string;
+    btnString:string;
 
 }

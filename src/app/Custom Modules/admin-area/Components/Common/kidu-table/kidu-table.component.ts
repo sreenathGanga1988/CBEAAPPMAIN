@@ -12,12 +12,38 @@ export class KiduTableComponent implements OnInit {
   constructor() { }
   @Input()
   tableColumns: Array<Column> = [];
-
+  dtOptions: DataTables.Settings = {};
   @Input()
-  rows: Observable<any[]>| undefined;
+  rows: any[]| undefined;
   displayedColumns: Array<string> = [];
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
     this.displayedColumns = this.tableColumns.map((c) => c.columnDef);    
+  };
+
+  
+
+
+  Datafity(  pageLength:number=5 ) {
+    setTimeout(()=>{   
+    
+      $('#dtTable').DataTable( {
+        pagingType: 'full_numbers',
+        pageLength: pageLength,
+        processing: true,
+        lengthMenu : [5, 10, 25]
+    } );
+    }, 250); 
   }
 
+  Rendvervalue(item :any,disCol:Column)  {
+
+
+
+  }
+  
 }

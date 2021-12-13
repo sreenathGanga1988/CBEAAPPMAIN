@@ -7,6 +7,7 @@ import { CategoryListComponent } from './Masters/Category/category-list/category
 import { StateListComponent } from './Masters/States/state-list/state-list.component';
 import { UsertypeListComponent } from './Masters/UserTypes/usertype-list/usertype-list.component';
 import { MaterialControlItemModule } from 'src/app/material.module';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -23,8 +24,8 @@ import { MaterialControlItemModule } from 'src/app/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialControlItemModule
-
+    MaterialControlItemModule,
+    DataTablesModule
   ]
 })
 export class AdminAreaModule { }

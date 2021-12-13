@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/Models/category.model';
 import { Column } from '../../../Components/Common/kidu-table/columns';
+import { KiduTableComponent } from '../../../Components/Common/kidu-table/kidu-table.component';
 import { CategoryService } from '../../../Services/category.service';
 //import { CategoryService } from '../../../Services/state.service';
 
@@ -12,17 +13,42 @@ import { CategoryService } from '../../../Services/category.service';
 })
 export class CategoryListComponent implements OnInit {
 
-  Items: Observable<Category[]>| undefined;
+  Items: Category[]| undefined;
   url:string="/Api_category";
+
+  @ViewChild(KiduTableComponent) child!: KiduTableComponent;
+
   constructor( private catservice :CategoryService) {
+    
   }
 
 
-  tableColumns: Array<Column> = [{columnDef:'id',header:'ID'},{columnDef:'abbreviation',header:'Code'},{columnDef:'name',header:'Name'}  ];
+  tableColumns!: Array<Column> 
   ngOnInit(): void {
+    this.tableColumns= this.catservice.tableColumns;
+    this.catservice.getCategories(this.url).subscribe( val=>{
+      this.Items=val;
+      for (var _item of  this.Items) {
+       
+let btnstring= "<div class='btn-toolbar' role='toolbar' >"       
 
-    this.Items= this.catservice.getCategories(this.url);
+        if(_item.isActive==true){
+          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
+        }else{
+          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
+        }
 
-    //this.catservice.getCategories(this.url).subscribe( val=>this.Items=val);
+        btnstring=btnstring+"</div>";
+
+        _item.btnString=btnstring;
+      }
+      
+     
+      this.child.Datafity(10);
+    });   
+  
+  }
+  ngAfterViewInit (){
+    
   }
 }
