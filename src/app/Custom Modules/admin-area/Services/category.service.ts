@@ -21,7 +21,7 @@ export class CategoryService {
     {columnDef:'id',header:'ID',colType:CellType.Text}
     ,{columnDef:'abbreviation',header:'Code',colType:CellType.Text},
     {columnDef:'name',header:'Name',colType:CellType.Text} 
-    ,{columnDef:'isActive',header:'Status',colType:CellType.Status} 
+    ,{columnDef:'statusString',header:'Status',colType:CellType.Status} 
     ,{columnDef:'btnString',header:'Actions',colType:CellType.Button} ];
   
    getCategories(url:string) : Observable<Category[]>{

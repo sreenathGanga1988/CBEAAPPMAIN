@@ -9,6 +9,6 @@ export interface AuditEntity {
     isDeleted: boolean;
     deletedByByUserId: number | null;
     deletedUser: string;
-    deletedDate: string | null;
+    deletedDate: string | null;   
 
 }

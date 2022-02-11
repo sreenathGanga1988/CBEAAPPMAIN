@@ -15,7 +15,7 @@ export class CategoryListComponent implements OnInit {
 
   Items: Category[]| undefined;
   url:string="/Api_category";
-
+  Tittle:string="Categories";
   @ViewChild(KiduTableComponent) child!: KiduTableComponent;
 
   constructor( private catservice :CategoryService) {
@@ -30,7 +30,22 @@ export class CategoryListComponent implements OnInit {
       this.Items=val;
       for (var _item of  this.Items) {
        
-let btnstring= "<div class='btn-toolbar' role='toolbar' >"       
+        let btnstring= "<div class='btn-toolbar' role='toolbar' >"       
+
+
+        if(_item.isActive===true){
+
+          _item.statusString="<span class='clsActiveStatus'>Active</span>";
+        //  btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
+        }else{
+          _item.statusString="<span class='clsInActiveStatus'>In Active</span>";
+         // btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
+        }
+
+
+
+
+
 
         if(_item.isActive==true){
           btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
@@ -42,13 +57,9 @@ let btnstring= "<div class='btn-toolbar' role='toolbar' >"
 
         _item.btnString=btnstring;
       }
-      
-     
       this.child.Datafity(10);
     });   
   
   }
-  ngAfterViewInit (){
-    
-  }
+ 
 }

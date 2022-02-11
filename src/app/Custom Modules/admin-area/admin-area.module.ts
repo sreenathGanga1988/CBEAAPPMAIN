@@ -8,6 +8,8 @@ import { StateListComponent } from './Masters/States/state-list/state-list.compo
 import { UsertypeListComponent } from './Masters/UserTypes/usertype-list/usertype-list.component';
 import { MaterialControlItemModule } from 'src/app/material.module';
 import { DataTablesModule } from 'angular-datatables';
+import { MainHeadingComponent } from './Components/Common/main-heading/main-heading.component';
+import { CategoryAddComponent } from './Masters/Category/category-add/category-add.component';
 
 
 
@@ -20,6 +22,8 @@ import { DataTablesModule } from 'angular-datatables';
     CategoryListComponent,
     StateListComponent,
     UsertypeListComponent,
+    MainHeadingComponent,
+    CategoryAddComponent,
 
   ],
   imports: [

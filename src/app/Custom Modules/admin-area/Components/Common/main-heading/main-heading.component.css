@@ -1,0 +1,10 @@
+.mainheading {
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #155724;
+    box-shadow: 2px 9px #888888;
+    padding: 5px;
+    margin: 5px;
+}

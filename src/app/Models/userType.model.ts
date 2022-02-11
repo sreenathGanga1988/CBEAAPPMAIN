@@ -1,7 +1,7 @@
 import { AuditEntity } from "./audit-entity.model";
 
 
-export class State implements AuditEntity {
+export class UserType implements AuditEntity {
     isActive: boolean=true;
     createdByUserId!: number | null;
     addedUser!: string;
@@ -16,7 +16,9 @@ export class State implements AuditEntity {
     id!: number;
     name!: string;
     abbreviation!: string;
+    description!: string;
 
     btnString:string="";
-
+    statusString:string="";
+      
 }

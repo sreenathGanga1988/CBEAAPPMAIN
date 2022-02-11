@@ -11,6 +11,7 @@ import { HomeComponent } from './Custom Modules/public-area/Components/home/home
 import { LoginComponent } from './Custom Modules/public-area/Components/login/login.component';
 import { ManagingCommiteeComponent } from './Custom Modules/public-area/Components/managing-commitee/managing-commitee.component';
 import { RuleComponent } from './Custom Modules/public-area/Components/rule/rule.component';
+import { CategoryAddComponent } from './Custom Modules/admin-area/Masters/Category/category-add/category-add.component';
 
 const routes: Routes = [
   //Site routes goes here
@@ -30,6 +31,7 @@ const routes: Routes = [
     component: AdminAreaLayoutComponent,
     children: [
       { path: 'categories', component: CategoryListComponent },
+      { path: 'add-category', component: CategoryAddComponent },
       { path: 'branches', component: BranchComponent },
       { path: 'states', component: StateListComponent },
       { path: 'usertypes', component: UsertypeListComponent },

@@ -15,4 +15,6 @@ export interface Branch extends AuditEntity {
     status: string; 
     circle_text: string;
     state_text: string;
+
+    btnString:string;
 }

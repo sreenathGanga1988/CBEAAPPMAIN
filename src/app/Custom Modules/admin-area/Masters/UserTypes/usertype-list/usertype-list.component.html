@@ -1,1 +1,9 @@
-<p>usertype-list works!</p>
+<app-main-heading [TopHeading]="Tittle">User Types</app-main-heading>
+
+<br>
+<nav>
+  <a routerLink="/add-usertype" class="btn btn-success pull-right" routerLinkActive="active">Add Category</a>
+  </nav>
+  <br>
+
+<app-kidu-table [tableColumns]="tableColumns" [rows]="Items"></app-kidu-table>

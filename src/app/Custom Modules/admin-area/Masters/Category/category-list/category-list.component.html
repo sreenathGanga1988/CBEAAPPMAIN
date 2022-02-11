@@ -1,2 +1,9 @@
-<h1>Category</h1>
+<app-main-heading [TopHeading]="Tittle">Category</app-main-heading>
+
+<br>
+<nav>
+  <a routerLink="/add-category" class="btn btn-success pull-right" routerLinkActive="active">Add Category</a>
+  </nav>
+  <br>
+
 <app-kidu-table [tableColumns]="tableColumns" [rows]="Items"></app-kidu-table>

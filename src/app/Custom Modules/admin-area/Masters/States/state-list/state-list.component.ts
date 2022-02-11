@@ -1,9 +1,11 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort,Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/Models/state.model';
-import { Column } from '../../../Components/Common/kidu-table/columns';
+import { CellType, Column } from '../../../Components/Common/kidu-table/columns';
+import { KiduTableComponent } from '../../../Components/Common/kidu-table/kidu-table.component';
 import { StateService } from '../../../Services/state.service';
 
 @Component({
@@ -14,29 +16,47 @@ import { StateService } from '../../../Services/state.service';
 export class StateListComponent implements OnInit {
 
 
-  Items: Observable<State[]>| undefined;
-
-
+  Items: State[]| undefined;
   url:string="/Api_State";
-  headingText:String="State";
+  Tittle:string="States";
+  @ViewChild(KiduTableComponent) child!: KiduTableComponent;
 
-  displayedColumns: string[] = ['id', 'abbreviation', 'name',];
-
-  @ViewChild(MatSort)
-  sort!: MatSort;
-
-  ngAfterViewInit() {
-
+  constructor( private catservice :StateService) {
+    
   }
 
-  constructor( private brnchservice :StateService) {
+  tableColumns: Array<Column> = [
+    {columnDef:'id',header:'ID',colType:CellType.Text}
+    ,{columnDef:'abbreviation',header:'Code',colType:CellType.Text},
+    {columnDef:'name',header:'Name',colType:CellType.Text} 
+    ,{columnDef:'isActive',header:'Status',colType:CellType.Status} 
+    ,{columnDef:'btnString',header:'Actions',colType:CellType.Button} ];
+
+
+    ngOnInit(): void {
+    this.catservice.getStates(this.url).subscribe( val=>{
+      this.Items=val;
+      for (var _item of  this.Items) {
+       
+        let btnstring= "<div class='btn-toolbar' role='toolbar' >"       
+
+        if(_item.isActive==true){
+          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
+        }else{
+          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
+        }
+
+        btnstring=btnstring+"</div>";
+
+        _item.btnString=btnstring;
+      }
+      this.child.Datafity(10);
+    });  
+    
+    
+    
+    
+  
   }
-
-
-
-  ngOnInit(): void {
- //   this.brnchservice.getStates(this.url).subscribe((els) => {this.dataSource3 = els;});
-  }
+ 
 }
-
-
