@@ -10,6 +10,8 @@ import { MaterialControlItemModule } from 'src/app/material.module';
 import { DataTablesModule } from 'angular-datatables';
 import { MainHeadingComponent } from './Components/Common/main-heading/main-heading.component';
 import { CategoryAddComponent } from './Masters/Category/category-add/category-add.component';
+import { UsetypeComponent } from './Masters/UserTypes/usetype/usetype.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,12 +26,14 @@ import { CategoryAddComponent } from './Masters/Category/category-add/category-a
     UsertypeListComponent,
     MainHeadingComponent,
     CategoryAddComponent,
+    UsetypeComponent,
 
   ],
   imports: [
+    FormsModule,
     CommonModule,
     MaterialControlItemModule,
-    DataTablesModule
+    DataTablesModule,ReactiveFormsModule
   ]
 })
 export class AdminAreaModule { }

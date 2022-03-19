@@ -15,6 +15,7 @@ import { AdminAreafooterComponent } from './_LayOut/Common/admin-areafooter/admi
 import { AdminAreaTopNavComponent } from './_LayOut/Common/admin-area-top-nav/admin-area-top-nav.component';
 import { MaterialControlItemModule } from './material.module';
 import { DataTablesModule } from 'angular-datatables';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -39,7 +40,7 @@ import { DataTablesModule } from 'angular-datatables';
     PublicAreaModule,AdminAreaModule,
     BrowserAnimationsModule,
     MaterialControlItemModule,
-    DataTablesModule
+    DataTablesModule,ReactiveFormsModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AppInterceptorService,multi:true}],
   bootstrap: [AppComponent]

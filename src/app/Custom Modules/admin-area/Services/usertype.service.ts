@@ -13,7 +13,7 @@ import { CellType, Column } from '../Components/Common/kidu-table/columns';
   providedIn: 'root'
 })
 export class UserTypeService {
-  url:String="/api_UserType";
+  url:string="/api_UserType";
  
   constructor( private httphelper :HttpHelperService) {  }
 
@@ -24,8 +24,17 @@ export class UserTypeService {
     ,{columnDef:'isActive',header:'Status',colType:CellType.Status} 
     ,{columnDef:'btnString',header:'Actions',colType:CellType.Button} ];
   
-   getUserTypes(url:string) : Observable<UserType[]>{
-    return this.httphelper.GetData(url).pipe(map((val) => val.isSucess ? val.value : []));
+   getUserTypes() {
+    return this.httphelper.GetData(this.url);
+   // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));
      }
-
+    postUserTypes(obj :any) {
+       return this.httphelper.POST(this.url,obj);
+     }
+     putUserTypes(id:number,obj :any) {
+      return this.httphelper.PUT(this.url+"/"+id,obj);
+    }
+    deleteItem(id:number) {
+      return this.httphelper.Delete(this.url+"/"+id);
+    }
 }

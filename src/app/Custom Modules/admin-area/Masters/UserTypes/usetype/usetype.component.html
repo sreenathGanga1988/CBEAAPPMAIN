@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Add User Type</h1>
+<div mat-dialog-content>
+  <form  [formGroup]="addForm">
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Code</mat-label>
+          <input formControlName="abbreviation" matInput placeholder="Placeholder">
+           <mat-hint>Abbreviation of User Type</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Desciption</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+          </mat-form-field>
+      </p>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button  mat-raised-button color="primary" (click)="SubmitAction()">{{ActionBtnString}}</button>
+</div>
