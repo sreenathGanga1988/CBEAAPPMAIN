@@ -17,12 +17,7 @@ export class UserTypeService {
  
   constructor( private httphelper :HttpHelperService) {  }
 
-  tableColumns: Array<Column> = [
-    {columnDef:'id',header:'ID',colType:CellType.Text}
-    ,{columnDef:'abbreviation',header:'Code',colType:CellType.Text},
-    {columnDef:'name',header:'Name',colType:CellType.Text} 
-    ,{columnDef:'isActive',header:'Status',colType:CellType.Status} 
-    ,{columnDef:'btnString',header:'Actions',colType:CellType.Button} ];
+ 
   
    getUserTypes() {
     return this.httphelper.GetData(this.url);
@@ -37,4 +32,8 @@ export class UserTypeService {
     deleteItem(id:number) {
       return this.httphelper.Delete(this.url+"/"+id);
     }
+    getUserTypeById(Id :number) {
+      return this.httphelper.GetData(this.url+"/"+Id);
+     // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));
+       }
 }

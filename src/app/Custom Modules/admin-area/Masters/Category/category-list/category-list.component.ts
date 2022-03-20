@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Category } from 'src/app/Models/category.model';
-import { Column } from '../../../Components/Common/kidu-table/columns';
-import { KiduTableComponent } from '../../../Components/Common/kidu-table/kidu-table.component';
+import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { CategoryService } from '../../../Services/category.service';
-//import { CategoryService } from '../../../Services/state.service';
+import { CategoryComponent } from '../category/category.component';
 
 @Component({
   selector: 'app-category-list',
@@ -13,53 +15,86 @@ import { CategoryService } from '../../../Services/category.service';
 })
 export class CategoryListComponent implements OnInit {
 
-  Items: Category[]| undefined;
-  url:string="/Api_category";
-  Tittle:string="Categories";
-  @ViewChild(KiduTableComponent) child!: KiduTableComponent;
+  Items!: Category[];
 
-  constructor( private catservice :CategoryService) {
-    
+  response!: CustomApiResponse;
+  displayedColumns: string[] = ['id', 'abbreviation', 'name', 'action'];
+  dataSource = new MatTableDataSource<Category>(this.Items)
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private categoryService: CategoryService, public dialog: MatDialog) {
   }
 
 
-  tableColumns!: Array<Column> 
+
+
   ngOnInit(): void {
-    this.tableColumns= this.catservice.tableColumns;
-    this.catservice.getCategories(this.url).subscribe( val=>{
-      this.Items=val;
-      for (var _item of  this.Items) {
-       
-        let btnstring= "<div class='btn-toolbar' role='toolbar' >"       
-
-
-        if(_item.isActive===true){
-
-          _item.statusString="<span class='clsActiveStatus'>Active</span>";
-        //  btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
-        }else{
-          _item.statusString="<span class='clsInActiveStatus'>In Active</span>";
-         // btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
-        }
-
-
-
-
-
-
-        if(_item.isActive==true){
-          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
-        }else{
-          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
-        }
-
-        btnstring=btnstring+"</div>";
-
-        _item.btnString=btnstring;
-      }
-      this.child.Datafity(10);
-    });   
-  
+    // this.usertypeService.getUserTypes().subscribe(val => {
+    //   this.dataSource.data = val as UserType[];
+    //   console.log(this.dataSource.data);
+    // });
+    this.GetItems();
   }
- 
+
+  GetItems() {
+
+    this.categoryService.getUserTypes().subscribe({
+      next: (res) => {
+        this.response = res;
+        if (this.response.isSucess == true) {
+          console.log(res);
+          this.dataSource = new MatTableDataSource(this.response.value as Category[]);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+        else {
+          alert(this.response.error);
+        }
+
+      },
+      error: (res) => {
+        alert("Erro while Adding")
+      }
+    })
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+ deleteItem(id:number){
+
+  this.categoryService.deleteItem(id).subscribe({
+    next: (res) => {
+      alert("Removed Sucessfully")
+      this.GetItems();
+    },
+    error: (res) => {
+      alert("Erro while Adding")
+    }
+  })
+ }
+
+  openDialog(action: string, obj: any) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(CategoryComponent, {
+      width: '40%',
+      data: obj
+    }).afterClosed().subscribe(val => {    
+      if (val.toLowerCase() == "updated") {
+        this.GetItems();
+      }
+      else if (val.toLowerCase() == "saved") {
+        this.GetItems();
+      }
+    });
+
+  }
 }
+

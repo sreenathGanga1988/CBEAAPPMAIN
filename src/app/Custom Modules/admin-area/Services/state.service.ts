@@ -13,12 +13,26 @@ import { CellType, Column } from '../Components/Common/kidu-table/columns';
   providedIn: 'root'
 })
 export class StateService {
-  url:String="/api_State";
+  url:string="/api_State";
   constructor( private httphelper :HttpHelperService) {  }
 
   
-   getStates(url:string) : Observable<State[]>{
-    return this.httphelper.GetData(url).pipe(map((val) => val.isSucess ? val.value : []));
+  getStates() {
+    return this.httphelper.GetData(this.url);
+   // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));
      }
+     getStateById(Id :number) {
+      return this.httphelper.GetData(this.url+"/"+Id);
+     // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));
+       }
+    postStates(obj :any) {
+       return this.httphelper.POST(this.url,obj);
+     }
+     putStates(id:number,obj :any) {
+      return this.httphelper.PUT(this.url+"/"+id,obj);
+    }
+    deleteState(id:number) {
+      return this.httphelper.Delete(this.url+"/"+id);
+    }
 
 }

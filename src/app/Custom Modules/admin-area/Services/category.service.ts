@@ -13,19 +13,25 @@ import { CellType, Column } from '../Components/Common/kidu-table/columns';
   providedIn: 'root'
 })
 export class CategoryService {
-  url:String="/api_category";
+  url:string="/api_category";
  
   constructor( private httphelper :HttpHelperService) {  }
 
-  tableColumns: Array<Column> = [
-    {columnDef:'id',header:'ID',colType:CellType.Text}
-    ,{columnDef:'abbreviation',header:'Code',colType:CellType.Text},
-    {columnDef:'name',header:'Name',colType:CellType.Text} 
-    ,{columnDef:'statusString',header:'Status',colType:CellType.Status} 
-    ,{columnDef:'btnString',header:'Actions',colType:CellType.Button} ];
-  
-   getCategories(url:string) : Observable<Category[]>{
-    return this.httphelper.GetData(url).pipe(map((val) => val.isSucess ? val.value : []));
-     }
-
+    getCategories() {
+      return this.httphelper.GetData(this.url);
+     // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));
+       }
+      postCategories(obj :any) {
+         return this.httphelper.POST(this.url,obj);
+       }
+       putCategories(id:number,obj :any) {
+        return this.httphelper.PUT(this.url+"/"+id,obj);
+      }
+      deleteItem(id:number) {
+        return this.httphelper.Delete(this.url+"/"+id);
+      }
+      getCategoriesById(Id :number) {
+        return this.httphelper.GetData(this.url+"/"+Id);
+       // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));
+         }
 }

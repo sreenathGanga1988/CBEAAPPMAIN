@@ -1,12 +1,13 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort,Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable } from 'rxjs';
+import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { State } from 'src/app/Models/state.model';
-import { CellType, Column } from '../../../Components/Common/kidu-table/columns';
-import { KiduTableComponent } from '../../../Components/Common/kidu-table/kidu-table.component';
 import { StateService } from '../../../Services/state.service';
+import { StateComponent } from '../state/state.component';
 
 @Component({
   selector: 'app-state-list',
@@ -16,47 +17,82 @@ import { StateService } from '../../../Services/state.service';
 export class StateListComponent implements OnInit {
 
 
-  Items: State[]| undefined;
-  url:string="/Api_State";
-  Tittle:string="States";
-  @ViewChild(KiduTableComponent) child!: KiduTableComponent;
+  Items!: State[];
 
-  constructor( private catservice :StateService) {
-    
+  response!: CustomApiResponse;
+  displayedColumns: string[] = ['id', 'abbreviation', 'name','status', 'action'];
+  dataSource = new MatTableDataSource<State>(this.Items)
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private stateService: StateService, public dialog: MatDialog) {
   }
 
-  tableColumns: Array<Column> = [
-    {columnDef:'id',header:'ID',colType:CellType.Text}
-    ,{columnDef:'abbreviation',header:'Code',colType:CellType.Text},
-    {columnDef:'name',header:'Name',colType:CellType.Text} 
-    ,{columnDef:'isActive',header:'Status',colType:CellType.Status} 
-    ,{columnDef:'btnString',header:'Actions',colType:CellType.Button} ];
 
 
-    ngOnInit(): void {
-    this.catservice.getStates(this.url).subscribe( val=>{
-      this.Items=val;
-      for (var _item of  this.Items) {
-       
-        let btnstring= "<div class='btn-toolbar' role='toolbar' >"       
 
-        if(_item.isActive==true){
-          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
-        }else{
-          btnstring= btnstring +"<div class='btn-group' role='group'><i class='bi-alarm' style='font-size: 2rem; color: cornflowerblue;'></i></div>"
+  ngOnInit(): void {    
+    this.GetItems();
+  }
+
+  GetItems() {
+
+    this.stateService.getStates().subscribe({
+      next: (res) => {
+        this.response = res;
+        if (this.response.isSucess == true) {
+          console.log(res);
+          this.dataSource = new MatTableDataSource(this.response.value as State[]);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+        else {
+          alert(this.response.error);
         }
 
-        btnstring=btnstring+"</div>";
-
-        _item.btnString=btnstring;
+      },
+      error: (res) => {
+        alert("Error while Adding")
       }
-      this.child.Datafity(10);
-    });  
-    
-    
-    
-    
-  
+    })
   }
- 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+ deleteItem(id:number){
+
+  this.stateService.deleteState(id).subscribe({
+    next: (res) => {
+      alert("Removed Sucessfully")
+      this.GetItems();
+    },
+    error: (res) => {
+      alert("Erro while Adding")
+    }
+  })
+ }
+
+  openDialog(action: string, obj: any) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(StateComponent, {
+      width: '40%',
+      data: obj
+    }).afterClosed().subscribe(val => {    
+      if (val.toLowerCase() == "updated") {
+        this.GetItems();
+      }
+      else if (val.toLowerCase() == "saved") {
+        this.GetItems();
+      }
+    });
+
+  }
 }
+

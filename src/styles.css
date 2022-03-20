@@ -5,3 +5,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.demo-table {
+    width: 100%;
+  }
+  /* top add button */
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .SearchByInput {
+    font-size: 14px;
+    width: 80%;
+  }

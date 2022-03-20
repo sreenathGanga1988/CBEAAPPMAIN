@@ -1,23 +1,23 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Category } from 'src/app/Models/category.model';
 import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
-import { UserType } from 'src/app/Models/userType.model';
-import { UserTypeService } from '../../../Services/usertype.service';
+import { CategoryService } from '../../../Services/category.service';
 
 @Component({
-  selector: 'app-usetype',
-  templateUrl: './usetype.component.html',
-  styleUrls: ['./usetype.component.css']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
-export class UsetypeComponent implements OnInit {
+export class CategoryComponent implements OnInit {
   response!: CustomApiResponse;
   ActionType!: string;
   ActionBtnString: string = "Save";
   local_data: any;
   addForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private userTypeService: UserTypeService,
-    public dialogRef: MatDialogRef<UsetypeComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public editdata: UserType) {
+  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService,
+    public dialogRef: MatDialogRef<CategoryComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public editdata: Category) {
     console.log(editdata);
     this.local_data = { ...editdata };
     this.ActionType = this.local_data.action;
@@ -30,10 +30,10 @@ export class UsetypeComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       id: [0],
       abbreviation: ['', [Validators.required, Validators.maxLength(5),]],
-      description: ['', Validators.required]
+      name: ['', Validators.required]
     });
     if (this.ActionType == "Update") {
-      this.GetUserTypeData(this.editdata.id);
+      this.GetCategoriesData(this.editdata.id);
 
     }
 
@@ -53,8 +53,8 @@ export class UsetypeComponent implements OnInit {
     }
 
   }
-  GetUserTypeData(id: Number) {
-    this.userTypeService.getUserTypeById(this.editdata.id).subscribe({
+  GetCategoriesData(id: Number) {
+    this.categoryService.getCategoriesById(this.editdata.id).subscribe({
       next: (res) => {
 
         if (res.isSucess == true) {
@@ -63,7 +63,7 @@ export class UsetypeComponent implements OnInit {
 
           this.addForm.controls['id'].setValue(this.editdata.id);
           this.addForm.controls['abbreviation'].setValue(this.editdata.abbreviation);
-          this.addForm.controls['description'].setValue(this.editdata.description);
+          this.addForm.controls['name'].setValue(this.editdata.name);
           this.ActionBtnString = "Update";
 
         }
@@ -81,7 +81,7 @@ export class UsetypeComponent implements OnInit {
 
   AddAction() {
     console.log(this.addForm.value);
-    this.userTypeService.postUserTypes(this.addForm.value).subscribe({
+    this.categoryService.postCategories(this.addForm.value).subscribe({
       next: (res) => {
         alert("Added Sucessfully")
         this.addForm.reset();
@@ -95,7 +95,7 @@ export class UsetypeComponent implements OnInit {
 
   UpdateAction() {
     console.log(this.addForm.value);
-    this.userTypeService.putUserTypes(this.editdata.id, this.addForm.value).subscribe({
+    this.categoryService.putCategories(this.editdata.id, this.addForm.value).subscribe({
       next: (res) => {
         if (res.isSucess == true) {
           console.log(res);

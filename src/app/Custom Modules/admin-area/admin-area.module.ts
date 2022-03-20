@@ -9,9 +9,10 @@ import { UsertypeListComponent } from './Masters/UserTypes/usertype-list/usertyp
 import { MaterialControlItemModule } from 'src/app/material.module';
 import { DataTablesModule } from 'angular-datatables';
 import { MainHeadingComponent } from './Components/Common/main-heading/main-heading.component';
-import { CategoryAddComponent } from './Masters/Category/category-add/category-add.component';
 import { UsetypeComponent } from './Masters/UserTypes/usetype/usetype.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StateComponent } from './Masters/States/state/state.component';
+import { CategoryComponent } from './Masters/Category/category/category.component';
 
 
 
@@ -25,8 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     StateListComponent,
     UsertypeListComponent,
     MainHeadingComponent,
-    CategoryAddComponent,
     UsetypeComponent,
+    StateComponent,
+    CategoryComponent,
 
   ],
   imports: [
