@@ -14,6 +14,7 @@ import { RuleComponent } from './Custom Modules/public-area/Components/rule/rule
 import { DesignationListComponent } from './Custom Modules/admin-area/Masters/Designation/designation-list/designation-list.component';
 import { StatusListComponent } from './Custom Modules/admin-area/Masters/Status/status-list/status-list.component';
 import { CircleListComponent } from './Custom Modules/admin-area/Masters/Circle/circle-list/circle-list.component';
+import { BranchListComponent } from './Custom Modules/admin-area/Masters/branch/branch-list/branch-list.component';
 
 const routes: Routes = [
   //Site routes goes here
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: 'designation', component: DesignationListComponent },
       { path: 'status', component: StatusListComponent },
       { path: 'circles', component: CircleListComponent },
+      { path: 'branch', component: BranchListComponent },
     ],
   },
   // { path: '', component: HomeComponent },

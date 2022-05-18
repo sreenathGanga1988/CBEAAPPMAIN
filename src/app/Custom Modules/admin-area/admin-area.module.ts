@@ -19,6 +19,8 @@ import { StatusListComponent } from './Masters/Status/status-list/status-list.co
 import { StatusComponent } from './Masters/Status/status/status.component';
 import { CircleListComponent } from './Masters/Circle/circle-list/circle-list.component';
 import { CircleComponent } from './Masters/Circle/circle/circle.component';
+import { BranchListComponent } from './Masters/branch/branch-list/branch-list.component';
+import { BranchViewComponent } from './Masters/branch/branch-view/branch-view.component';
 
 
 
@@ -41,6 +43,8 @@ import { CircleComponent } from './Masters/Circle/circle/circle.component';
     StatusComponent,
     CircleListComponent,
     CircleComponent,
+    BranchListComponent,
+    BranchViewComponent,
 
   ],
   imports: [
