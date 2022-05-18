@@ -1,11 +1,15 @@
 import { AuditEntity } from "./audit-entity.model";
 
 
-export class State implements AuditEntity {
-    
+export class Status implements AuditEntity {
+   
     id!: number;
     name!: string;
+    description!: string;
     abbreviation!: string;
+    groupCode!: string;
+    groupId!: number | null;
+
 
 
     isActive: boolean=true;
@@ -19,8 +23,15 @@ export class State implements AuditEntity {
     deletedByByUserId!: number | null;
     deletedUser!: string;
     deletedDate!: string | null;
+   
 
-    
+
+
+
+
+
+
+
     btnString:string="";
 
 }

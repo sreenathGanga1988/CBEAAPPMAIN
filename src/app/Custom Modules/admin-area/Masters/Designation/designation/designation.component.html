@@ -1,18 +1,18 @@
-<h1 mat-dialog-title>Add New State</h1>
+<h1 mat-dialog-title>Add New Designation</h1>
 <div mat-dialog-content>
   <form [formGroup]="addForm" >
     <p>
         <mat-form-field appearance="outline" style="width: 40%;">
-          <mat-label>Code</mat-label>
-          <input formControlName="abbreviation" matInput placeholder="Code">
-           <mat-hint>Abbreviation of State</mat-hint>
+          <mat-label>Name</mat-label>
+          <input formControlName="name" matInput placeholder="name">
+           <mat-hint>Name of Designation</mat-hint>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline" style="width: 80%;">
-          <mat-label>Name</mat-label>
-          <input formControlName="name" matInput placeholder="Name">
-           <mat-hint>State Name</mat-hint>
+          <mat-label>Description</mat-label>
+          <input formControlName="description" matInput placeholder="description">
+           <mat-hint>Designation Description</mat-hint>
         </mat-form-field>
       </p>
       <p>

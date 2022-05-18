@@ -13,6 +13,12 @@ import { UsetypeComponent } from './Masters/UserTypes/usetype/usetype.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StateComponent } from './Masters/States/state/state.component';
 import { CategoryComponent } from './Masters/Category/category/category.component';
+import { DesignationListComponent } from './Masters/Designation/designation-list/designation-list.component';
+import { DesignationComponent } from './Masters/Designation/designation/designation.component';
+import { StatusListComponent } from './Masters/Status/status-list/status-list.component';
+import { StatusComponent } from './Masters/Status/status/status.component';
+import { CircleListComponent } from './Masters/Circle/circle-list/circle-list.component';
+import { CircleComponent } from './Masters/Circle/circle/circle.component';
 
 
 
@@ -29,6 +35,12 @@ import { CategoryComponent } from './Masters/Category/category/category.componen
     UsetypeComponent,
     StateComponent,
     CategoryComponent,
+    DesignationListComponent,
+    DesignationComponent,
+    StatusListComponent,
+    StatusComponent,
+    CircleListComponent,
+    CircleComponent,
 
   ],
   imports: [

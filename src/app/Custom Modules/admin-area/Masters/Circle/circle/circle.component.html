@@ -3,16 +3,30 @@
   <form [formGroup]="addForm" >
     <p>
         <mat-form-field appearance="outline" style="width: 40%;">
+          <mat-label>Circle Code</mat-label>
+          <input formControlName="circleCode" matInput placeholder="Code">
+           <mat-hint>Code of Circle</mat-hint>
+        </mat-form-field>
+      </p>
+    <p>
+        <mat-form-field appearance="outline" style="width: 40%;">
           <mat-label>Code</mat-label>
           <input formControlName="abbreviation" matInput placeholder="Code">
-           <mat-hint>Abbreviation of State</mat-hint>
+           <mat-hint>Abbreviation of Circle</mat-hint>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline" style="width: 80%;">
           <mat-label>Name</mat-label>
           <input formControlName="name" matInput placeholder="Name">
-           <mat-hint>State Name</mat-hint>
+           <mat-hint>Circle Name</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline" style="width: 80%;">
+          <mat-label>State</mat-label>
+          <input formControlName="stateId" matInput placeholder="stateId">
+           <mat-hint>Circle Name</mat-hint>
         </mat-form-field>
       </p>
       <p>

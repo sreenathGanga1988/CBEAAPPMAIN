@@ -2,15 +2,15 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
-import { State } from 'src/app/Models/state.model';
-import { StateService } from '../../../Services/state.service';
+import { Status } from 'src/app/Models/status.model';
+import { StatusService } from '../../../Services/status.service';
 
 @Component({
-  selector: 'app-state',
-  templateUrl: './state.component.html',
-  styleUrls: ['./state.component.css']
+  selector: 'app-status',
+  templateUrl: './status.component.html',
+  styleUrls: ['./status.component.css']
 })
-export class StateComponent implements OnInit {
+export class StatusComponent implements OnInit {
 
   CurrentUserID: number = 1;
   response!: CustomApiResponse;
@@ -18,9 +18,9 @@ export class StateComponent implements OnInit {
   ActionBtnString: string = "Save";
   local_data: any;
   addForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private stateService: StateService,
-    public dialogRef: MatDialogRef<StateComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public editdata: State) {
+  constructor(private formBuilder: FormBuilder, private statusService: StatusService,
+    public dialogRef: MatDialogRef<StatusComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public editdata: Status) {
     console.log(editdata);
     this.local_data = { ...editdata };
     this.ActionType = this.local_data.action;
@@ -34,6 +34,8 @@ export class StateComponent implements OnInit {
       id: [0],
       abbreviation: ['', [Validators.required, Validators.maxLength(5),]],
       name: ['', Validators.required],
+      description: ['', Validators.required],
+      groupCode: ['', Validators.required],
       isActive: [true,],
       createdDate: [new Date()],
       createdByUserId: ['', Validators.required],
@@ -41,7 +43,7 @@ export class StateComponent implements OnInit {
       modifiedByUserId: ['', Validators.required],
     });
     if (this.ActionType == "Update") {
-      this.GetStateData(this.editdata.id);
+      this.GetStatusData(this.editdata.id);
     }
 
   }
@@ -68,8 +70,8 @@ export class StateComponent implements OnInit {
   }
 
 
-  GetStateData(id: Number) {
-    this.stateService.getStateById(this.editdata.id).subscribe({
+  GetStatusData(id: Number) {
+    this.statusService.getStatusById(this.editdata.id).subscribe({
       next: (res) => {
 
         if (res.isSucess == true) {
@@ -78,6 +80,8 @@ export class StateComponent implements OnInit {
 
           this.addForm.controls['id'].setValue(this.editdata.id);
           this.addForm.controls['abbreviation'].setValue(this.editdata.abbreviation);
+          this.addForm.controls['description'].setValue(this.editdata.description);
+          this.addForm.controls['groupCode'].setValue(this.editdata.groupCode);
           this.addForm.controls['name'].setValue(this.editdata.name);
           this.addForm.controls['isActive'].setValue(this.editdata.isActive);
           this.addForm.controls['createdDate'].setValue(this.editdata.createdDate);
@@ -102,7 +106,7 @@ export class StateComponent implements OnInit {
     
     
     console.log(this.addForm.value);
-    this.stateService.postStates(this.addForm.value).subscribe({
+    this.statusService.postStatus(this.addForm.value).subscribe({
       next: (res) => {
         this.processResult(res, "Saved")
       },
@@ -115,7 +119,7 @@ export class StateComponent implements OnInit {
   UpdateAction() {
    
     console.log(this.addForm.value);  
-    this.stateService.putStates(this.editdata.id, this.addForm.value).subscribe({
+    this.statusService.putStatus(this.editdata.id, this.addForm.value).subscribe({
       next: (res) => {
         this.processResult(res, "Updated")
       },

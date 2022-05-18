@@ -40,6 +40,7 @@ export class CategoryComponent implements OnInit {
   }
 
   SubmitAction() {
+   
     if (this.ActionType == "Add") {
       if (this.addForm.valid) {
         this.AddAction();
@@ -47,6 +48,7 @@ export class CategoryComponent implements OnInit {
 
     }
     else {
+      console.log("form invalid");
       if (this.addForm.valid) {
         this.UpdateAction();
       }

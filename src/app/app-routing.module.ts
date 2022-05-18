@@ -11,6 +11,9 @@ import { HomeComponent } from './Custom Modules/public-area/Components/home/home
 import { LoginComponent } from './Custom Modules/public-area/Components/login/login.component';
 import { ManagingCommiteeComponent } from './Custom Modules/public-area/Components/managing-commitee/managing-commitee.component';
 import { RuleComponent } from './Custom Modules/public-area/Components/rule/rule.component';
+import { DesignationListComponent } from './Custom Modules/admin-area/Masters/Designation/designation-list/designation-list.component';
+import { StatusListComponent } from './Custom Modules/admin-area/Masters/Status/status-list/status-list.component';
+import { CircleListComponent } from './Custom Modules/admin-area/Masters/Circle/circle-list/circle-list.component';
 
 const routes: Routes = [
   //Site routes goes here
@@ -33,6 +36,9 @@ const routes: Routes = [
       { path: 'branches', component: BranchComponent },
       { path: 'states', component: StateListComponent },
       { path: 'usertypes', component: UsertypeListComponent },
+      { path: 'designation', component: DesignationListComponent },
+      { path: 'status', component: StatusListComponent },
+      { path: 'circles', component: CircleListComponent },
     ],
   },
   // { path: '', component: HomeComponent },
