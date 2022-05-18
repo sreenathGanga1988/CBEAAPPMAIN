@@ -40,7 +40,7 @@ export class CategoryListComponent implements OnInit {
 
   GetItems() {
 
-    this.categoryService.getUserTypes().subscribe({
+    this.categoryService.getCategories().subscribe({
       next: (res) => {
         this.response = res;
         if (this.response.isSucess == true) {
