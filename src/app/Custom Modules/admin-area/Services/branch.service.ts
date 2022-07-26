@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { Branch } from 'src/app/Models/branch.model';
 import { HttpHelperService } from 'src/app/http-helper.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +23,11 @@ export class BranchService {
 
   }
 
+  getBranchAsync(pageNo:number,pageSize:number,sortOrder :string) {
+   let asyncurl=this.url+"/BranchGetPaginatedData/"+ pageNo.toString()+"/"+ pageSize.toString()+"/"+ sortOrder.toString();
+    return this.httphelper.GetData(asyncurl);
+    // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));
+  }
   getBranch() {
     return this.httphelper.GetData(this.url);
     // return this.httphelper.GetData(this.url).pipe(map((val) => val.isSucess ? val.value : []));

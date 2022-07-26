@@ -48,8 +48,8 @@ const routes: Routes = [
   // { path: 'managing-commitee', component: ManagingCommiteeComponent },
   // { path: 'contact-us', component: ContactusComponent },
   // { path: 'login', component: LoginComponent },
-  { path: 'categories', component: CategoryListComponent },
-  { path: 'branches', component: BranchComponent },
+  // { path: 'categories', component: CategoryListComponent },
+  // { path: 'branches', component: BranchComponent },
 ];
 
 @NgModule({

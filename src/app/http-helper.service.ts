@@ -7,7 +7,7 @@ import { CustomApiResponse } from './Models/custom-api-responseo.model';
   providedIn: 'root'
 })
 export class HttpHelperService {
-  BaseUrl: String = "https://www.cbeugjfws.co.in/api";
+  BaseUrl: String = "https://localhost:44396/api";
   header: HttpHeaders;
   constructor(private httpclient: HttpClient) {
     this.header = new HttpHeaders("sdfkjsdhfkj");

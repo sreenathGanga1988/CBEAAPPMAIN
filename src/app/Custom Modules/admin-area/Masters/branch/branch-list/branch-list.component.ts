@@ -14,9 +14,7 @@ import { BranchViewComponent } from '../branch-view/branch-view.component';
   templateUrl: './branch-list.component.html',
   styleUrls: ['./branch-list.component.css']
 })
-export class BranchListComponent implements OnInit {
-
-  
+export class BranchListComponent implements OnInit {  
 
   Items!: Branch[];
 
@@ -58,8 +56,31 @@ export class BranchListComponent implements OnInit {
       }
     })
   }
+
+  GetItemsAsyn() {
+
+    this.branchService.getBranchAsync(1,3,"asc").subscribe({
+      next: (res) => {
+        this.response = res;
+        if (this.response.isSucess == true) {
+          console.log(res);
+          this.dataSource = new MatTableDataSource(this.response.value as Branch[]);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+        else {
+          alert(this.response.error);
+        }
+
+      },
+      error: (res) => {
+        alert("Error while Adding")
+      }
+    })
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    alert(filterValue)
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {

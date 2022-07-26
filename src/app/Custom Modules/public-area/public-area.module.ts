@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ManagingCommiteeComponent } from './Components/managing-commitee/managing-commitee.component';
 import { ContactusComponent } from './Components/contactus/contactus.component';
 import { LoginComponent } from './Components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -20,6 +21,8 @@ import { LoginComponent } from './Components/login/login.component';
     CommonModule,
     RouterModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ]
 })
