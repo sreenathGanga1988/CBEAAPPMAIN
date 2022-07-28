@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { LoadingService } from 'src/app/Custom Modules/public-area/Services/loading.service';
 import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { Designation } from 'src/app/Models/designation-model';
 import { DesignationService } from '../../../Services/designation-service';
@@ -22,7 +23,7 @@ export class DesignationListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private designationService: DesignationService, public dialog: MatDialog) {
+  constructor(private designationService: DesignationService, public dialog: MatDialog ,public loadingService: LoadingService,) {
   }
 
 
@@ -33,7 +34,7 @@ export class DesignationListComponent implements OnInit {
   }
 
   GetItems() {
-
+    this.loadingService.IsLoading=true;
     this.designationService.getDesignations().subscribe({
       next: (res) => {
         this.response = res;
@@ -42,6 +43,7 @@ export class DesignationListComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.response.value as Designation[]);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          this.loadingService.IsLoading=false;
         }
         else {
           alert(this.response.error);

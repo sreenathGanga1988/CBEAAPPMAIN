@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LoadingService } from '../Custom Modules/public-area/Services/Loading.service';
+import { LoadingService } from '../Custom Modules/public-area/Services/loading.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { LoadingService } from '../Custom Modules/public-area/Services/Loading.s
 })
 export class AppComponent {
 
+  IsAdmin: boolean=true;
 
   constructor(public loadingService: LoadingService, ) {
   }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { LoadingService } from 'src/app/Custom Modules/public-area/Services/loading.service';
 import { Category } from 'src/app/Models/category.model';
 import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { CategoryService } from '../../../Services/category.service';
@@ -24,7 +25,7 @@ export class CategoryListComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private categoryService: CategoryService, public dialog: MatDialog) {
+  constructor(private categoryService: CategoryService, public dialog: MatDialog ,public loadingService: LoadingService,) {
   }
 
 
@@ -39,7 +40,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   GetItems() {
-
+    this.loadingService.IsLoading=true;
     this.categoryService.getCategories().subscribe({
       next: (res) => {
         this.response = res;
@@ -48,6 +49,7 @@ export class CategoryListComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.response.value as Category[]);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          this.loadingService.IsLoading=false;
         }
         else {
           alert(this.response.error);

@@ -21,6 +21,7 @@ import { CircleListComponent } from './Masters/Circle/circle-list/circle-list.co
 import { CircleComponent } from './Masters/Circle/circle/circle.component';
 import { BranchListComponent } from './Masters/branch/branch-list/branch-list.component';
 import { BranchViewComponent } from './Masters/branch/branch-view/branch-view.component';
+import { AdminToolBarComponent } from './Components/Common/admin-tool-bar/admin-tool-bar.component';
 
 
 
@@ -45,6 +46,7 @@ import { BranchViewComponent } from './Masters/branch/branch-view/branch-view.co
     CircleComponent,
     BranchListComponent,
     BranchViewComponent,
+    AdminToolBarComponent,
 
   ],
   imports: [

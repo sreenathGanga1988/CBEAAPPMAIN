@@ -56,6 +56,7 @@ export class CategoryComponent implements OnInit {
 
   }
   GetCategoriesData(id: Number) {
+    
     this.categoryService.getCategoriesById(this.editdata.id).subscribe({
       next: (res) => {
 

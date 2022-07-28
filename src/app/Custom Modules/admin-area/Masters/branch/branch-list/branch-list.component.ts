@@ -1,4 +1,4 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { analyzeAndValidateNgModules, flatten } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -8,6 +8,7 @@ import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { Branch } from 'src/app/Models/branch.model';
 import { BranchService } from '../../../Services/branch.service';
 import { BranchViewComponent } from '../branch-view/branch-view.component';
+import { LoadingService } from 'src/app/Custom Modules/public-area/Services/loading.service';
 
 @Component({
   selector: 'app-branch-list',
@@ -25,7 +26,7 @@ export class BranchListComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private branchService: BranchService, public dialog: MatDialog) {
+  constructor(private branchService: BranchService, public dialog: MatDialog,public loadingService: LoadingService,) {
   }
 
 
@@ -36,7 +37,7 @@ export class BranchListComponent implements OnInit {
   }
 
   GetItems() {
-
+    this.loadingService.IsLoading=true;
     this.branchService.getBranch().subscribe({
       next: (res) => {
         this.response = res;
@@ -45,6 +46,7 @@ export class BranchListComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.response.value as Branch[]);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          this.loadingService.IsLoading=false;
         }
         else {
           alert(this.response.error);
@@ -89,14 +91,14 @@ export class BranchListComponent implements OnInit {
   }
 
  deleteItem(id:number){
-
+  this.loadingService.IsLoading=true;
   this.branchService.deleteBranch(id).subscribe({
     next: (res) => {
       alert("Removed Sucessfully")
       this.GetItems();
     },
     error: (res) => {
-      alert("Erro while Adding")
+      alert("Error while Deleting")
     }
   })
  }
