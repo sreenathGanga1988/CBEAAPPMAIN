@@ -16,6 +16,7 @@ import { AdminAreaTopNavComponent } from './_LayOut/Common/admin-area-top-nav/ad
 import { MaterialControlItemModule } from './material.module';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
+import { KidupickupComponent } from './_LayOut/Shared Controls/kidupickup/kidupickup.component';
 
 
 
@@ -31,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PublicAreaNavComponent,
     AdminAreaTopNavComponent,
     AdminAreafooterComponent,
+    KidupickupComponent,
     
         ],
   imports: [
