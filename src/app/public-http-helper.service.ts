@@ -7,7 +7,7 @@ import { LoginResponse } from './Custom Modules/public-area/Models/loginresponse
 })
 export class PublicHttpHelperService {
 
-  BaseUrl:String="https://localhost:44396/api";
+  BaseUrl:String="https://www.cbeugjfws.co.in/api";
   constructor( private httpclient :HttpClient) {
    }
 
@@ -16,6 +16,6 @@ export class PublicHttpHelperService {
    }
    Login(email:string, password:string ) {
             return this.httpclient.post<LoginResponse>('/api/login', {email, password});
-} 
-     
+}
+
   }
