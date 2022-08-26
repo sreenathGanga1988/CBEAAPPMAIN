@@ -1,99 +1,74 @@
-<button
-  style="margin: 25px; padding: 10px; font-size: xx-small"
-  type="button"
-  class="btn btn-primary"
-  (click)="openPopup()"
->
-  {{ PickupProperties?.ButtonText }}
+<button style="margin: 25px; padding: 10px;font-size: xx-small   ;" type="button" class="btn btn-primary"
+  (click)="openPopup()">{{PickupProperties?.ButtonText}}
 </button>
-<div style="font-size: small">
-
-  <div
-    class="modal"
-    tabindex="-1"
-    role="dialog"
-    [ngStyle]="{ display: displayStyle }"
-  >
-
-    <div class="modal-dialog" role="document">
-
+<div style=" font-size: small;">
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" [ngStyle]="{'height':'500px' }" role="document">
       <div class="modal-content">
-
         <div class="modal-header">
-
-          <h5 class="modal-title">{{ PickupProperties?.DisplayHeader }}</h5>
+          <h5 class="modal-title">{{PickupProperties?.DisplayHeader}}</h5>
+          <button type="button" class="btn-close" (click)="closePopup()" data-bs-dismiss="modal"
+            aria-label="Close"></button>
 
         </div>
-
         <div class="modal-body">
-
           <div class="form-group">
 
-            <input type="text" class="form-control" id="txtSearchname" />
+            <div class="input-group flex-nowrap">
+
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                aria-describedby="addon-wrapping" (input)="onSearchChange($any($event.target).value)">
+              <span class="input-group-text" id="addon-wrapping">@</span>
+            </div>
 
           </div>
-
-          <hr />
-
+          <hr>
           <div class="form-group">
-
             <table class="table table-striped table-bordered table-responsive">
-
               <thead>
-
                 <tr>
 
-                  <th
-                    *ngFor="
-                      let Headeritem of PickupProperties.DisplayHeaderitem
-                    "
-                  >
-                    {{ Headeritem }}
+                  <th *ngFor="let Headeritem of PickupProperties.DisplayHeaderitem">
+                    {{Headeritem}}
                   </th>
-
-                  <th>Action</th>
-
+                 
+                  <th *ngIf="PickupProperties.isSelectable" style="width:10%">
+                    Action
+                  </th>
                 </tr>
 
               </thead>
-
               <tbody>
-
-                <tr *ngFor="let item of PickupProperties.DataSource">
-
-                  <td *ngFor="let colitem of PickupProperties.DisplayColitem">
-                   {{ item[colitem] }}
+                <tr *ngIf="isTableLoading">
+                  <td *ngFor="let Headeritem of PickupProperties.DisplayHeaderitem">
+                    <div class="spinner-border text-info" role="status">
+                      <span class="sr-only"></span>
+                    </div>
                   </td>
-
-                  <td>
-                    <button
-                      class="btn btn-primary"
-                      (click)="SelectAction(item)"
-                    >
-                      <i class="fa fa-home"></i>Select
-                    </button>
+                  <td *ngIf="PickupProperties.isSelectable">
+                    <div class="spinner-border text-info" role="status">
+                      <span class="sr-only"></span>
+                    </div>
                   </td>
-
                 </tr>
 
+                <tr *ngFor="let item of DataSource">
+                  <td *ngFor="let colitem of PickupProperties.DisplayColitem">
+                    {{item[colitem]}}
+
+                  </td>
+                  <td *ngIf="PickupProperties.isSelectable"><button class="btn" (click)="SelectAction(item)">&#9989;
+                    </button></td>
+                </tr>
               </tbody>
-
             </table>
-
           </div>
-
         </div>
-
         <div class="modal-footer">
-
-          <button type="button" class="btn btn-danger" (click)="closePopup()">
-          Close</button
-          >
+          <button type="button" class="btn btn-danger" (click)="closePopup()"> Close
+          </button>
         </div>
-
       </div>
-
     </div>
-
   </div>
 </div>
