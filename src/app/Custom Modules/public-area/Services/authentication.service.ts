@@ -13,8 +13,9 @@ export class AuthenticationService {
     }
 
 
-    login(username: string, password: string) {
-        this.httphelper.Login(username,password).subscribe((val) => {
+    login(obj :any) {
+       
+        this.httphelper.Login(obj).subscribe((val) => {
             this.setSession(val)
           });
 
@@ -22,18 +23,30 @@ export class AuthenticationService {
 
     }
     private setSession(authResult:any) {
-       
-        localStorage.setItem('id_token', authResult);
+       console.log(authResult );
+        localStorage.setItem('userdata', JSON.stringify(authResult));
         localStorage.setItem("expires_at", authResult );
+
+       
     }          
 
     logout() {
-        localStorage.removeItem("id_token");
+        localStorage.removeItem("userdata");
         localStorage.removeItem("expires_at");
     }
 
     public isLoggedIn() {
-       return true;
+
+        
+           var userdata=localStorage.getItem("userdata")
+        if (userdata != null) {
+            alert(userdata);
+            return true;
+          }
+       
+       else{
+        return false;
+       }
     }
 
     isLoggedOut() {
@@ -41,4 +54,8 @@ export class AuthenticationService {
     }
 
    
+}
+export class UserLoginDTO {
+    userName?: string;
+    password?: string;
 }

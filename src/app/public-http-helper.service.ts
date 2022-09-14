@@ -14,8 +14,10 @@ export class PublicHttpHelperService {
    GetData(url:string) : Observable<any>{
     return  this.httpclient.get<any>(this.BaseUrl+url);
    }
-   Login(email:string, password:string ) {
-            return this.httpclient.post<LoginResponse>('/api/login', {email, password});
+   Login(obj :any ) {
+            return this.httpclient.post<LoginResponse>(this.BaseUrl+'/Security',obj);
 }
 
   }
+
+  
