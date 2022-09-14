@@ -40,7 +40,7 @@ export class AuthenticationService {
         
            var userdata=localStorage.getItem("userdata")
         if (userdata != null) {
-            alert(userdata);
+            
             return true;
           }
        

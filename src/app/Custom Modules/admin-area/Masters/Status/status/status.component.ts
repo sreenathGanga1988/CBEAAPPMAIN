@@ -55,7 +55,7 @@ export class StatusComponent implements OnInit {
         this.AddAction();
       }
       else{
-        alert("Hi");
+       
         console.log(this.addForm.errors)
       }
 

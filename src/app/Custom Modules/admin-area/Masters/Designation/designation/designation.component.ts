@@ -54,7 +54,7 @@ export class DesignationComponent implements OnInit {
         this.AddAction();
       }
       else{
-        alert("Hi");
+    
         console.log(this.addForm.errors)
       }
 
