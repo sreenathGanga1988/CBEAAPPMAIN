@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mainpage } from '../../Models/mainpage.model';
+import { LoadingService } from '../../Services/loading.service';
 
 import { PublicAreaService } from '../../Services/public-area.service';
 
@@ -13,14 +14,15 @@ export class HomeComponent implements OnInit {
 
   Model:  Mainpage | undefined;
   url:string="/Api_PublicArea/GetMainPageLast";
-  constructor( private publicservice :PublicAreaService) {
+  constructor( private publicservice :PublicAreaService,public loadingService: LoadingService,) {
 
   }
 
   ngOnInit(): void {
+    this.loadingService.IsLoading=true;
    this.publicservice.getMainPage(this.url).subscribe(val=>{
     this.Model=val;
-    console.log(this.Model);
+    this.loadingService.IsLoading=false;
 
    });
   }
