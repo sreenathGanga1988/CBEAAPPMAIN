@@ -50,7 +50,7 @@ export class AuthenticationService {
     }
 
     isLoggedOut() {
-        return !this.isLoggedIn();
+        return this.isLoggedIn();
     }
 
    

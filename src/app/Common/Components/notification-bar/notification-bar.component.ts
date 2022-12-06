@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from '../../Modules/Alert';
 
 @Component({
   selector: 'app-notification-bar',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notification-bar.component.css']
 })
 export class NotificationBarComponent implements OnInit {
-
-  constructor() { }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
+  constructor(public alertService: AlertService) { }
 
   ngOnInit(): void {
   }

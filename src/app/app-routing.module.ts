@@ -15,6 +15,7 @@ import { DesignationListComponent } from './Custom Modules/admin-area/Masters/De
 import { StatusListComponent } from './Custom Modules/admin-area/Masters/Status/status-list/status-list.component';
 import { CircleListComponent } from './Custom Modules/admin-area/Masters/Circle/circle-list/circle-list.component';
 import { BranchListComponent } from './Custom Modules/admin-area/Masters/branch/branch-list/branch-list.component';
+import { NotificationBarComponent } from './Common/Components/notification-bar/notification-bar.component';
 
 const routes: Routes = [
   //Site routes goes here
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'status', component: StatusListComponent },
       { path: 'circles', component: CircleListComponent },
       { path: 'branch', component: BranchListComponent },
+      { path: 'notification', component: NotificationBarComponent },
     ],
   },
   // { path: '', component: HomeComponent },

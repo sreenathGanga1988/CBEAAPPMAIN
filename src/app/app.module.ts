@@ -17,8 +17,7 @@ import { MaterialControlItemModule } from './material.module';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KidupickupComponent } from './Common/Controls/kidupickup/kidupickup.component';
-import { NotificationBarComponent } from './Common/Components/notification-bar/notification-bar.component';
-
+import { AlertModule } from './Common/Modules/Alert';
 
 
 
@@ -34,7 +33,7 @@ import { NotificationBarComponent } from './Common/Components/notification-bar/n
     AdminAreaTopNavComponent,
     AdminAreafooterComponent,
     KidupickupComponent,
-    NotificationBarComponent,
+
     
         ],
   imports: [
@@ -44,8 +43,8 @@ import { NotificationBarComponent } from './Common/Components/notification-bar/n
     PublicAreaModule,AdminAreaModule,
     BrowserAnimationsModule,
     MaterialControlItemModule,
-    DataTablesModule,ReactiveFormsModule
-  ],
+    DataTablesModule,ReactiveFormsModule, AlertModule,
+   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AppInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
