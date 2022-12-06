@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './Components/app.component';
-import { AppInterceptorService } from './Core/Interceptors/app-interceptor.service';
+import { AppInterceptorService } from './Common/Core/Interceptors/app-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAreaModule } from './Custom Modules/admin-area/admin-area.module';
 import { PublicAreaModule } from './Custom Modules/public-area/public-area.module';
