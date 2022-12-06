@@ -6,7 +6,7 @@ import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 import { map } from 'rxjs/operators';
 import { Branch } from 'src/app/Models/branch.model';
-import { HttpHelperService } from 'src/app/http-helper.service';
+import { HttpHelperService } from 'src/app/Common/Services/http-helper.service';
 
 
 @Injectable({

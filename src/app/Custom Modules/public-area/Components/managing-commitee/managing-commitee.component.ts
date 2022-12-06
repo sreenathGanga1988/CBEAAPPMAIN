@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Publicmanagingcomitee } from '../../Models/publicmanagingcomitee';
-import { LoadingService } from '../../Services/loading.service';
+import { LoadingService } from '../../../../Common/Services/loading.service';
 import { PublicAreaService } from '../../Services/public-area.service';
 
 @Component({

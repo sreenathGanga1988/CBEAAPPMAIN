@@ -8,7 +8,7 @@ import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { Branch } from 'src/app/Models/branch.model';
 import { BranchService } from '../../../Services/branch.service';
 import { BranchViewComponent } from '../branch-view/branch-view.component';
-import { LoadingService } from 'src/app/Custom Modules/public-area/Services/loading.service';
+import { LoadingService } from 'src/app/Common/Services/loading.service';
 
 @Component({
   selector: 'app-branch-list',

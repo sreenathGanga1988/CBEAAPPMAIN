@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mainpage } from '../../Models/mainpage.model';
-import { LoadingService } from '../../Services/loading.service';
+import { LoadingService } from '../../../../Common/Services/loading.service';
 
 import { PublicAreaService } from '../../Services/public-area.service';
 

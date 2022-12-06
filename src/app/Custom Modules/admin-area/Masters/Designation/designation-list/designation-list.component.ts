@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { LoadingService } from 'src/app/Custom Modules/public-area/Services/loading.service';
+import { LoadingService } from 'src/app/Common/Services/loading.service';
 import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { Designation } from 'src/app/Models/designation-model';
 import { DesignationService } from '../../../Services/designation-service';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../Custom Modules/public-area/Services/authentication.service';
-import { LoadingService } from '../Custom Modules/public-area/Services/loading.service';
+import { AuthenticationService } from '../Common/Services/authentication.service';
+import { LoadingService } from '../Common/Services/loading.service';
 
 
 @Component({
