@@ -1,7 +1,7 @@
 import { UsertypeListComponent } from './Custom Modules/admin-area/Masters/UserTypes/usertype-list/usertype-list.component';
 import { StateListComponent } from './Custom Modules/admin-area/Masters/States/state-list/state-list.component';
-import { AdminAreaLayoutComponent } from './_LayOut/admin-area-layout/admin-area-layout.component';
-import { PublicAreaLayoutComponent } from './_LayOut/public-area-layout/public-area-layout.component';
+import { AdminAreaLayoutComponent } from './Common/LayOuts/admin-area-layout/admin-area-layout.component';
+import { PublicAreaLayoutComponent } from './Common/LayOuts/public-area-layout/public-area-layout.component';
 import { BranchComponent } from './Custom Modules/admin-area/Masters/branch/branch.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
