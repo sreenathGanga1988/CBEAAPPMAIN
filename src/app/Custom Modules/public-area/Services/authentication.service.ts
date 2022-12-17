@@ -9,17 +9,17 @@ import { PublicHttpHelperService } from 'src/app/public-http-helper.service';
 export class AuthenticationService {
 
     constructor(private httphelper :PublicHttpHelperService) {
-        
+
     }
 
 
-    login(obj :any) {
-       
+    public login(obj :any) {
+
         this.httphelper.Login(obj).subscribe((val) => {
             this.setSession(val)
           });
 
-       
+
 
     }
     private setSession(authResult:any) {
@@ -27,8 +27,8 @@ export class AuthenticationService {
         localStorage.setItem('userdata', JSON.stringify(authResult));
         localStorage.setItem("expires_at", authResult );
 
-       
-    }          
+
+    }
 
     logout() {
         localStorage.removeItem("userdata");
@@ -37,13 +37,13 @@ export class AuthenticationService {
 
     public isLoggedIn() {
 
-        
+
            var userdata=localStorage.getItem("userdata")
         if (userdata != null) {
-            
+
             return true;
           }
-       
+
        else{
         return false;
        }
@@ -53,7 +53,7 @@ export class AuthenticationService {
         return !this.isLoggedIn();
     }
 
-   
+
 }
 export class UserLoginDTO {
     userName?: string;
