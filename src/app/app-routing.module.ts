@@ -1,7 +1,7 @@
 import { UsertypeListComponent } from './Custom Modules/admin-area/Masters/UserTypes/usertype-list/usertype-list.component';
 import { StateListComponent } from './Custom Modules/admin-area/Masters/States/state-list/state-list.component';
-import { AdminAreaLayoutComponent } from './_LayOut/admin-area-layout/admin-area-layout.component';
-import { PublicAreaLayoutComponent } from './_LayOut/public-area-layout/public-area-layout.component';
+import { AdminAreaLayoutComponent } from './Common/LayOuts/admin-area-layout/admin-area-layout.component';
+import { PublicAreaLayoutComponent } from './Common/LayOuts/public-area-layout/public-area-layout.component';
 import { BranchComponent } from './Custom Modules/admin-area/Masters/branch/branch.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,6 +15,7 @@ import { DesignationListComponent } from './Custom Modules/admin-area/Masters/De
 import { StatusListComponent } from './Custom Modules/admin-area/Masters/Status/status-list/status-list.component';
 import { CircleListComponent } from './Custom Modules/admin-area/Masters/Circle/circle-list/circle-list.component';
 import { BranchListComponent } from './Custom Modules/admin-area/Masters/branch/branch-list/branch-list.component';
+import { NotificationBarComponent } from './Common/Components/notification-bar/notification-bar.component';
 
 const routes: Routes = [
   //Site routes goes here
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'status', component: StatusListComponent },
       { path: 'circles', component: CircleListComponent },
       { path: 'branch', component: BranchListComponent },
+      { path: 'notification', component: NotificationBarComponent },
     ],
   },
   // { path: '', component: HomeComponent },

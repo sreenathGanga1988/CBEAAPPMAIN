@@ -3,21 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './Components/app.component';
-import { AppInterceptorService } from './Core/Interceptors/app-interceptor.service';
+import { AppInterceptorService } from './Common/Core/Interceptors/app-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAreaModule } from './Custom Modules/admin-area/admin-area.module';
 import { PublicAreaModule } from './Custom Modules/public-area/public-area.module';
-import { PublicFooterComponent } from './_LayOut/Common/public-footer/public-footer.component';
-import { AdminAreaLayoutComponent } from './_LayOut/admin-area-layout/admin-area-layout.component';
-import { PublicAreaLayoutComponent } from './_LayOut/public-area-layout/public-area-layout.component';
-import { PublicAreaNavComponent } from './_LayOut/Common/public-area-nav/public-area-nav.component';
-import { AdminAreafooterComponent } from './_LayOut/Common/admin-areafooter/admin-areafooter.component';
-import { AdminAreaTopNavComponent } from './_LayOut/Common/admin-area-top-nav/admin-area-top-nav.component';
+import { PublicFooterComponent } from './Custom Modules/public-area/Components/Common/public-footer/public-footer.component';
+import { AdminAreaLayoutComponent } from './Common/LayOuts/admin-area-layout/admin-area-layout.component';
+import { PublicAreaLayoutComponent } from './Common/LayOuts/public-area-layout/public-area-layout.component';
+import { PublicAreaNavComponent } from './Custom Modules/public-area/Components/Common/public-area-nav/public-area-nav.component';
+import { AdminAreafooterComponent } from './Custom Modules/admin-area/Components/Common/admin-areafooter/admin-areafooter.component';
+import { AdminAreaTopNavComponent } from './Custom Modules/admin-area/Components/Common/admin-area-top-nav/admin-area-top-nav.component';
 import { MaterialControlItemModule } from './material.module';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
-import { KidupickupComponent } from './_LayOut/Shared Controls/kidupickup/kidupickup.component';
-
+import { KidupickupComponent } from './Common/Controls/kidupickup/kidupickup.component';
+import { AlertModule } from './Common/Modules/Alert';
+import { KiduConfirmBoxComponent } from './Common/Controls/kidu-confirm-box/kidu-confirm-box.component';
 
 
 
@@ -33,6 +34,8 @@ import { KidupickupComponent } from './_LayOut/Shared Controls/kidupickup/kidupi
     AdminAreaTopNavComponent,
     AdminAreafooterComponent,
     KidupickupComponent,
+    KiduConfirmBoxComponent,
+
     
         ],
   imports: [
@@ -42,8 +45,8 @@ import { KidupickupComponent } from './_LayOut/Shared Controls/kidupickup/kidupi
     PublicAreaModule,AdminAreaModule,
     BrowserAnimationsModule,
     MaterialControlItemModule,
-    DataTablesModule,ReactiveFormsModule
-  ],
+    DataTablesModule,ReactiveFormsModule, AlertModule,
+   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AppInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })

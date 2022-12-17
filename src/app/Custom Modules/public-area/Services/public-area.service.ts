@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { PublicHttpHelperService } from 'src/app/public-http-helper.service';
+import { PublicHttpHelperService } from 'src/app/Common/Services/public-http-helper.service';
 import { Mainpage } from '../Models/mainpage.model';
 import { Publicmanagingcomitee, PublicManagingComiteeDTOList } from '../Models/publicmanagingcomitee';
 

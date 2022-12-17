@@ -6,7 +6,7 @@ import { observable, Observable, of } from 'rxjs';
 import { CustomApiResponse } from 'src/app/Models/custom-api-responseo.model';
 import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 import { map } from 'rxjs/operators';
-import { HttpHelperService } from 'src/app/http-helper.service';
+import { HttpHelperService } from 'src/app/Common/Services/http-helper.service';
 import { CellType, Column } from '../Components/Common/kidu-table/columns';
 
 @Injectable({
