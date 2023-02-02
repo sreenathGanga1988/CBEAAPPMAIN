@@ -18,7 +18,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KidupickupComponent } from './Common/Controls/kidupickup/kidupickup.component';
 import { AlertModule } from './Common/Modules/Alert';
-import { KiduConfirmBoxComponent } from './Common/Controls/kidu-confirm-box/kidu-confirm-box.component';
+
 
 
 
@@ -34,7 +34,7 @@ import { KiduConfirmBoxComponent } from './Common/Controls/kidu-confirm-box/kidu
     AdminAreaTopNavComponent,
     AdminAreafooterComponent,
     KidupickupComponent,
-    KiduConfirmBoxComponent,
+   
 
     
         ],
